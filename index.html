@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PAINT BALL GAME</title>
+        <!--scripts-->
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"> </script>
+        <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+        <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+        <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+        <script src="js/playerMovement.js"></script>
+        <script src="js/shoot.js"></script>
+
+    </head>
+
+    <body>
+        <a-scene id="scene">
+
+            <!--assets-->
+            <a-assets>
+               <a-asset-item id="shooter" src="./models/soldier/scene.gltf"></a-asset-item>
+               <audio id="shoot" src="./sounds/paint.mp3"></audio>
+               <audio id="footsteps" src="./sounds/footStep.mp3"></audio>
+
+            </a-assets>
+            
+            <!--AFRAME ENVIRONMENT-->
+            <a-entity id="environment" environment="preset:default; skytype:gradient;
+            lightning:point"></a-entity>
+           
+            <a-entity light="type:ambient; color:white; intensity:0.5"></a-entity>
+            <a-entity light="type:directional; color:#eee; intensity:1 position:-1 1 0"></a-entity>
+
+            <!--sound-->
+            <a-entity id="sound1" sound="src:#shoot; poolsize:2; autoplay:false;volume:1
+            loop:false"></a-entity>
+            <a-entity id="sound2" sound="src:#footsteps; poolsize:2;autoplay:false;volume:1
+            loop:false"></a-entity>
+
+            <a-entity
+                id="camera"
+                camera
+                position="0 1.6 0"
+                wasd-controls
+                look-controls="pointerLockEnabled:true">
+                <a-entity id="weapon" gltf-model="#shooter" position="0 -2.6 -0.2" rotation="-20 -145 20" scale="0.05 0.05 0.05"
+                player-movement></a-entity>
+                <a-cursor></a-cursor>
+            </a-entity>
+
+            <!--ground-->
+            <a-plane 
+            id="ground" 
+            repeat="200 200" 
+            position="0 0 0" 
+            rotation="-90 0 0" 
+            height="200"
+            width="200" 
+            static-body 
+            visible="false">
+            </a-plane>
+
+            <a-entity shoot-balls></a-entity>
+
+            <!--walls-->
+            <a-plane id="right-wall"  color="#99fff3" repeat="10 1 1" position="25 5 -15" rotation="0 -90 0"
+                height="10" width="50" depth="1" static-body visible="true">
+            </a-plane>
+            <a-plane id="left-wall" color="#99fff3"  repeat="10 1 1" position="-25 5 -15" rotation="0 90 0"
+                height="10" width="50" depth="1" static-body visible="true">
+            </a-plane>
+            <a-plane id="back-wall"  color="#99fff3" repeat="10 1 1" position="0 5 -40" rotation="0 0 0"
+                height="10" width="50" depth="1" static-body visible="true">
+            </a-plane>
+
+            <!--paintball arena walls-->
+            <a-plane id="Pwall1" height="3.2" width="5"position="0 0 -5" color="black"
+            static-body visible="true"></a-plane>
+
+            <a-plane id="Pwall2" height="3.2" width="7"position="8.5 0 -5" color="red"
+            static-body visible="true"></a-plane>
+
+            <a-plane id="Pwall3" height="3.2" width="5"position="-7.5 0 -5" color="yellow"
+            static-body visible="true"></a-plane>
+    
+            <a-cylinder id="Pwall4"  radius="0.6" height="6" position="-14 0 -5.3" color="#4f46ff"
+            static-body visible="true"></a-cylinder>
+
+            <a-plane id="Pwall5" height="3.2" width="3"position="-19 0 -6.5" color="brown"
+            rotation="0 30 0" static-body visible="true"></a-plane>
+
+            <a-plane id="Pwall6" color="#5d1b6f" height="2.5" width="17"
+            position="-5.6 1.2 -25.5" rotation="0 45 0" static-body visible="true"></a-plane>
+
+            <a-cone  id="Pwall7" color="tomato" radius-bottom="3" position="19 0 -6"  
+            radius-top="0.1" height="6" visible="true" static-body></a-cone>
+
+            <a-plane  id="Pwall8" color="#ed3535" height= "2.5" width="10"
+            position="11.9 1.25 -22" rotation="0 -45 0" static-body visible="true">
+            </a-plane>
+
+            <a-plane  id="Pwall9" color="#3d6D88" height= "2.5" width="11"
+            position="10 1.25 -15" rotation="0 -105 0" static-body visible="true">
+            </a-plane>
+
+            <a-plane  id="Pwall10" color="coral" height= "2.5" width="13"
+            position="-11.3 1.25 -20.6" rotation="0 -45 0" static-body visible="true">
+            </a-plane>
+
+            <a-plane  id="Pwall11" color="goldenrod" height="2.5" width="10"
+            position="-22.38153 1.25 -14.23461" rotation="0 80 0" static-body visible="true">
+            </a-plane>
+
+            <a-plane  id="Pwall12" color="rosybrown" height="2.5" width="15"
+            position="9 1.25 -12" rotation="0 10 0" static-body visible="true">
+            </a-plane>
+
+            
+            <a-plane  id="Pwall13" color="dodgerblue" width="15" height="2.5"
+            position="-16.3989 1.25 -14.04311" rotation="0 -45 0" static-body visible="true">
+            </a-plane>
+
+            
+            <a-cylinder id="Pwall14"  radius="1.5" height="6" position="8 0 -10.3" color="mediumvioletred"
+            static-body visible="true"></a-cylinder>
+
+                    
+            <a-plane id="Pwall15" color="#18cd58" height="2.3" width="9"
+            position="-5 1 -14" rotation="0 65 0" static-body visible="true">
+            </a-plane>
+
+            <a-plane id="Pwall16" height="3.5" width="8"position="0 0 -36" color="slateblue"
+            static-body visible="true"></a-plane>
+
+            <a-plane id="Pwall17" height="3.5" width="11"position="15.5 0 -36" color="darkred"
+            static-body visible="true"></a-plane>
+
+            <a-plane id="Pwall18" height="3.5" width="15"position="-15.5 0 -36" color="palegoldenrod"
+            static-body visible="true"></a-plane>
+            
+            <a-plane id="Pwall19" color="navy" height="2.3" width="19"
+            position="-16 1 -18" rotation="0 75 0" static-body visible="true">
+            </a-plane>
+           
+            <a-plane id="Pwall20" color="darksalmon" height="2.3" width="19"
+            position="17 1 -26" rotation="0 -23 0" static-body visible="true">
+            </a-plane>
+
+            <a-plane id="Pwall21" color="orchid" height="2.3" width="19"
+            position="3 1 -23" rotation="0 -23 0" static-body visible="true"> 
+            </a-plane>
+
+            <a-plane  id="Pwall22" color="tan" height= "2.5" width="14"
+            position="11.9 1.25 -22" rotation="0 20 0" static-body visible="true">
+            </a-plane>
+        </a-scene>
+    </body>
+</html>
